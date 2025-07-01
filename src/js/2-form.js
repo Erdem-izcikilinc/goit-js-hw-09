@@ -1,31 +1,27 @@
 const form = document.querySelector('.feedback-form');
-let formData = { email: '', message: '' };
+const STORAGE_KEY = 'feedback-form-state';
 
-form.addEventListener('input', event => {
-    event.preventDefault();
-    if (event.target.name === "email") {
-        formData.email = form.elements.email.value.trim();
-    }
-    if (event.target.name === "message") {
-        formData.message = form.elements.message.value.trim();
-    }
-    localStorage.setItem('feedback-form-state', JSON.stringify(formData));
+let formData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+
+form.elements.email.value = formData.email || '';
+form.elements.message.value = formData.message || '';
+
+form.addEventListener('input', (e) => {
+  formData[e.target.name] = e.target.value;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 });
 
-const savedData = localStorage.getItem('feedback-form-state');
-if (savedData)  {
-    Object.assign(formData, JSON.parse(savedData));
-    if (form.elements.email) form.elements.email.value = formData.email || '';
-    if (form.elements.message) form.elements.message.value = formData.message || '';
-}
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const { email, message } = form.elements;
 
-form.addEventListener('submit', event => {
-    event.preventDefault();
-    if (!formData.email || !formData.message) {
-        alert("Fill please all fields")
-    } else {
-        console.log(formData);
-        localStorage.removeItem("feedback-form-state");
-    }
-    form.reset();
-})
+  if (!email.value || !message.value) {
+    alert('Lütfen tüm alanları doldurun.');
+    return;
+  }
+
+  console.log({ email: email.value, message: message.value });
+  localStorage.removeItem(STORAGE_KEY);
+  form.reset();
+  formData = {};
+});
