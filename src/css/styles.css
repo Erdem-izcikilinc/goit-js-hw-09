@@ -16,3 +16,16 @@
 @import url('./badges.css');
 @import url('./back-link.css');
 @import url('./footer.css');
+
+
+.main li {
+  list-style-type: none;
+}
+
+.menu {
+  text-decoration: none;
+}
+
+.back-link {
+  text-decoration: none;
+}
