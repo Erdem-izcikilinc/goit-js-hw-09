@@ -32,17 +32,21 @@
 
 /* SimpleLightbox alt yazı stili */
 .simple-lightbox .sl-caption {
-  font-size: 1rem;
   color: white;
-  text-align: center;
+  text-align: left;               
   padding: 10px 20px;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 4px;
-  max-width: 90%;
-  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.8); /* koyu siyah yarı saydam arka plan */
+  width: 50%;                   /* tam genişlik */
+  box-sizing: border-box;        /* padding dahil */
+  position: absolute;            /* resmin altına yapışması için */
+  bottom: 0;
+  left: 0;
 }
 
-/* Kapatma X butonu */
+.simple-lightbox .sl-image {
+  position: relative;
+}
+
 .sl-close {
   color: white;
   font-size: 2rem;
@@ -51,12 +55,12 @@
   opacity: 0.8;
   transition: opacity 0.3s ease;
   cursor: pointer;
+
 }
 .sl-close:hover {
   opacity: 1;
 }
 
-/* Ok butonları */
 .sl-prev,
 .sl-next {
   color: white;
@@ -69,4 +73,3 @@
 .sl-next:hover {
   opacity: 1;
 }
- 
