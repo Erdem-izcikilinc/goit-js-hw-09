@@ -13,7 +13,7 @@ form.addEventListener('input', event => {
 });
 
 const savedData = localStorage.getItem('feedback-form-state');
-if (savedData) {
+if (savedData)  {
     Object.assign(formData, JSON.parse(savedData));
     if (form.elements.email) form.elements.email.value = formData.email || '';
     if (form.elements.message) form.elements.message.value = formData.message || '';
